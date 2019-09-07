@@ -18,7 +18,7 @@ import java.io.File
 
 @DocLog("消息发送服务实现类")
 @Service("mailService")
-class MailServiceImpl: MailService {
+open class MailServiceImpl: MailService {
 	
 	@DocLog("日志")
 	private val logger by lazy {LoggerFactory.getLogger(this.javaClass)}
@@ -30,7 +30,8 @@ class MailServiceImpl: MailService {
 	lateinit var mailSender: JavaMailSender
 	
 	@DocLog("发送普通文本邮件， to: 收件人， subject： 主题， content：内容")
-	@DocExample("service.sendSimpleMail(\"receiver@email.com\", \"发送邮件测试\", \"大家好，这是我用springboot进行发送邮件测试\");")
+	//@DocExample("service.sendSimpleMail(\"receiver@email.com\", \"发送邮件测试\", \"大家好，这是我用springboot进行发送邮件测试\");")
+	@Throws(Exception::class)
 	override fun sendSimpleMail(to: String, subject: String, content: String) {
 		logger.info("发送普通文本邮件开始：{},{},{}", to, subject, content);
 		var message: SimpleMailMessage = SimpleMailMessage()
@@ -43,8 +44,9 @@ class MailServiceImpl: MailService {
 	}
 
 	@DocLog("发送HTML邮件， to：收件人，subject：主题，content：内容")
-	@DocExample("var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件</font></h3></body></html>\""
-				+"service.sendHtmlMail(\"receiver@email.com\", \"发送邮件测试\", content);")
+	//@DocExample("var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件</font></h3></body></html>\""
+	//			+"service.sendHtmlMail(\"receiver@email.com\", \"发送邮件测试\", content);")
+	@Throws(Exception::class)
 	override fun sendHtmlMail(to: String, subject: String, content: String) {
 		logger.info("发送HTML邮件开始：{},{},{}", to, subject, content);
         var message: MimeMessage = mailSender.createMimeMessage();
@@ -63,8 +65,9 @@ class MailServiceImpl: MailService {
 	}
 
 	@DocLog("发送带附件的邮件，to：收件人，subject：主题，content：内容，filePath： 附件内容")
-	@DocExample(" var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件，有附件哦</font></h3></body></html>\";"
-				+ "service.sendAttachmentMail(\"receiver@email.com\", \"发送邮件测试\", content, filePath);")
+	//@DocExample(" var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件，有附件哦</font></h3></body></html>\";"
+	//			+ "service.sendAttachmentMail(\"receiver@email.com\", \"发送邮件测试\", content, filePath);")
+	@Throws(Exception::class)
 	override fun sendAttachmentMail(to: String, subject: String, content: String, filePath: String) {
 		logger.info("发送带附件邮件开始：{},{},{},{}", to, subject, content, filePath);
         var message: MimeMessage = mailSender.createMimeMessage();
@@ -87,10 +90,11 @@ class MailServiceImpl: MailService {
 	}
 
 	@DocLog("发送带图片的邮件，to：收件人，subject：主题，content：内容，rscPath：图片路径，rscId：图片ID，用于在<img>标签中使用，从而显示图片")
-	@DocExample("var rscPath: String = \"your picture path\";"
-				+ "var rscId: String = \"001\";"
-				+ "var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件，有图片哦</font></h3>\""
-                         + "<img src='cid: rscId '></body></html>\";")
+	//@DocExample("var rscPath: String = \"your picture path\";"
+	//			+ "var rscId: String = \"001\";"
+	//			+ "var content: String = \"<html><body><h3><font color=\"red\">大家好，这是springboot发送的HTML邮件，有图片哦</font></h3>\""
+    //                     + "<img src='cid: rscId '></body></html>\";")
+	@Throws(Exception::class)
 	override fun sendInlineResourceMail(to: String, subject: String, content: String, rscPath: String, rscId: String) {
 		logger.info("发送带图片邮件开始：{},{},{},{},{}", to, subject, content, rscPath, rscId);
         var message: MimeMessage = mailSender.createMimeMessage();

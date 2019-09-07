@@ -4,18 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import xin.spring.annotation.AnnotationTest
 import xin.spring.annotation.DocLog
+import xin.spring.annotation.SysMailLog
 import xin.spring.result.R
 import xin.spring.service.MailService
 
 @RestController
 @RequestMapping("/sys/")
-class MailController {
+open class MailController {
 	
 	@DocLog("消息服务")
 	@Autowired
-	lateinit var mailService: MailService
+	open lateinit var mailService: MailService
 	
+	@AnnotationTest("单发邮件")
+	@SysMailLog("单发邮件")
 	@DocLog("单发邮件")
 	@RequestMapping("sendSimpleMail")
 	fun sendSimpleMail(@RequestParam(name = "to", required = true) to: String,
@@ -25,6 +29,7 @@ class MailController {
 		return R.ok()
 	}
 	
+	@SysMailLog("单发邮件")
 	@DocLog("多次单发邮件")
 	@RequestMapping("sendSimpleMailMore")
 	fun sendSimpleMailMore(@RequestParam(name = "to", required = true) to: String,

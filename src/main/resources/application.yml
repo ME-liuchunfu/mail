@@ -28,6 +28,25 @@ spring:
             max-file-size: 100MB
             max-request-size: 100MB
             enabled: true
+    #通用数据源配置
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        #driver-class-name: org.mariadb.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/kotlin?charset=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+        #url: jdbc:mysql://localhost:3307/kotlin?charset=utf8&useSSL=false
+        username: root
+        #password: 123456
+        password: root123
+        # Hikari 数据源专用配置
+        hikari:
+            maximum-pool-size: 20
+            minimum-idle: 5
+    # JPA 相关配置
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        show-sql: true
+        hibernate:
+            ddl-auto: update
     redis:
         open: false  # 是否开启redis缓存  true开启   false关闭
         database: 0
@@ -54,13 +73,13 @@ spring:
         #true表示使用连接池；false时，每发送一条数据创建一个连接
         pool:
             enabled: true
-                        #连接池最大连接数
-            max-connections: 10
-                        #空闲的连接过期时间，默认为30秒
+            #连接池最大连接数
+            max-connections: 30
+            #空闲的连接过期时间，默认为30秒
             idle-timeout: 30000
-                        #强制的连接过期时间，
-                        #与idleTimeout的区别在于：idleTimeout是在连接空闲一段时间失效，
-                        #而expiryTimeout不管当前连接的情况，只要达到指定时间就失效。默认为0，never
+            #强制的连接过期时间，
+            #与idleTimeout的区别在于：idleTimeout是在连接空闲一段时间失效，
+            #而expiryTimeout不管当前连接的情况，只要达到指定时间就失效。默认为0，never
             #expiry-timeout: 0
     mail:
         # QQ邮箱服务器
