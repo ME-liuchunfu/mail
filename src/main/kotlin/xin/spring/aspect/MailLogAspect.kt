@@ -21,18 +21,18 @@ import org.springframework.core.annotation.Order
 @DocLog("AOP切面记录日志")
 @Aspect
 @Component
-open class MailLogAspect {
+class MailLogAspect {
 	
 	@DocLog("记录MailLog服务")
 	@Autowired
 	lateinit var mailLogService: MailLogService
 	
 	@Pointcut("@annotation(xin.spring.annotation.SysMailLog)")
-	fun mailLogPointcut(){
+	fun mailLogPoint1Cut(){
 		
 	}
 	
-	@Around("mailLogPointcut()")
+	@Around("mailLogPoint1Cut()")
 	@Throws(Throwable::class)
 	fun around(point: ProceedingJoinPoint): Any{
 		val beginTime = System.currentTimeMillis()
@@ -65,7 +65,7 @@ open class MailLogAspect {
             val params = Gson().toJson(args)
             mailLog.content = params
         } catch (e: Exception) {
-        	
+        	e.printStackTrace();
         }
 
         //获取request
@@ -76,6 +76,7 @@ open class MailLogAspect {
         mailLog.date = Date()
         //保存系统日志
         mailLogService.save(mailLog)
+		print("日志：" + mailLog.toString());
     }
 	
 }

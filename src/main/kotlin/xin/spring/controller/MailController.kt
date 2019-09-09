@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import xin.spring.annotation.AnnotationTest
 import xin.spring.annotation.DocLog
 import xin.spring.annotation.SysMailLog
 import xin.spring.result.R
@@ -18,7 +17,6 @@ open class MailController {
 	@Autowired
 	open lateinit var mailService: MailService
 	
-	@AnnotationTest("单发邮件")
 	@SysMailLog("单发邮件")
 	@DocLog("单发邮件")
 	@RequestMapping("sendSimpleMail")
