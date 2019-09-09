@@ -28,11 +28,11 @@ class MailLogAspect {
 	lateinit var mailLogService: MailLogService
 	
 	@Pointcut("@annotation(xin.spring.annotation.SysMailLog)")
-	fun mailLogPoint1Cut(){
+	fun mailLogPointCut(){
 		
 	}
 	
-	@Around("mailLogPoint1Cut()")
+	@Around("mailLogPointCut()")
 	@Throws(Throwable::class)
 	fun around(point: ProceedingJoinPoint): Any{
 		val beginTime = System.currentTimeMillis()
