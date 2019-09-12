@@ -18,7 +18,7 @@ class MailLogController {
 	
 	@RequestMapping("list")
 	fun findMailList(): R{
-		var result = mailLogService.findAll();
+		var result = mailLogService.findAll()
 		return R.ok().put("data", result)
 	}
 	
