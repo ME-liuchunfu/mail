@@ -9,6 +9,7 @@ import xin.spring.annotation.SysMailLog
 import xin.spring.result.R
 import xin.spring.service.MailService
 
+@DocLog("邮件发送控制器")
 @RestController
 @RequestMapping("/sys/")
 open class MailController {

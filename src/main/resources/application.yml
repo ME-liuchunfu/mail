@@ -30,13 +30,13 @@ spring:
             enabled: true
     #通用数据源配置
     datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        #driver-class-name: org.mariadb.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/kotlin?charset=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-        #url: jdbc:mysql://localhost:3307/kotlin?charset=utf8&useSSL=false
+        #driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: org.mariadb.jdbc.Driver
+        #url: jdbc:mysql://localhost:3306/kotlin?charset=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://localhost:3307/kotlin?charset=utf8&useSSL=false
         username: root
-        #password: 123456
-        password: root123
+        password: 123456
+        #password: root123
         # Hikari 数据源专用配置
         hikari:
             maximum-pool-size: 20
@@ -67,7 +67,7 @@ spring:
     activemq:
         broker-url: tcp://localhost:61616
         #true 表示使用内置的MQ，false则连接服务器
-        in-memory: false
+        in-memory: true
         user: admin
         password: admin
         #true表示使用连接池；false时，每发送一条数据创建一个连接
